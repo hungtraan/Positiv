@@ -41,10 +41,11 @@
                 <p class = "hightlight"> Highlights: {{post.highlight}} </p> 
                 <p class = "problem"> Problem: {{post.problem}}</p>
                 {%for keyword in keywords}
-                <a class="category-link keyword" href="#">{{post.keywords.keyword}}</a>
+                <a class="category-link keyword" href="#">{{post.keywords.keyword}}</a>{%endfor}
               </div>
             </a>
           </li>
+          {%endfor%}
      
     </div>
     <div class="page-content loading-mask" id="new-stack">
