@@ -1,31 +1,20 @@
-{% extends 'base.html' %}
 
-{% block body-content %}
 <div class="body padding">
   <!-- <div class="logo-login smaller"></div> -->
-  
-  <div class="padding quote with-mark">
-    <p class="description-new indent-6">In the middle of every difficulty lies opportunity.
-    <br>
-    <span class="quote-author">- Albert Einstein</span></p>
-  </div>
   <div class="padding vertical-center">
     <div class="w-form">
       <form id="submit-form" name="email-form" action="#">
         <div>
-          <h2 class="title-new light">What did not go so well today?</h2>
+          <h2 class="title-new light">Let's spend a moment and think about high points of your day?</h2>
           <textarea class="w-input input-form light" id="high-point" type="text" name="high-point" data-name="high-point" required="required" rows="1"> </textarea> 
-          <i class="icon ion-ios-mic input-mic" aria-hidden="true"></i>
+          <i class="fa fa-microphone input-mic" aria-hidden="true"></i>
         </div>
         <div class="separator-button-input"></div>
         <input class="w-button action-button" type="submit" value="Next" data-wait="Please wait...">
         <div class="separator-button"></div><a class="link-upper" href="#" data-load="1">Skip</a>
       </form>
-      
     </div>
   </div>
 </div>
 
-{% include "progress-bar.html" with perc=40 %}
-
-{% endblock %}
+{% include "progress-bar.html" with perc=20 %}

@@ -1,11 +1,5 @@
 {% extends 'base.html' %}
 
-{% block css %}
-    {{ block.super }} {# includes previous content in block #}
-    {# view-specific imports here #}
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-{% endblock %}
-
 {% block js %}
     {{ block.super }} {# includes previous content in block #}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>

@@ -1,5 +1,6 @@
 <div class="w-nav navbar transparent" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
   <div class="w-container">
+    {% if not exit %}
     <nav class="w-nav-menu nav-menu bg-gradient" role="navigation">
       <div class="nav-menu-header">
         <div class="logo">Positiv</div>
@@ -32,7 +33,7 @@
       <div class="separator-bottom"></div>
       <div class="separator-bottom"></div>
     </nav>
-    <div class="wrapper-mask" data-ix="menu-mask"></div>
+
     <div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
       <div class="navbar-button-icon home-icon">
         <div class="bar-home-icon top"></div>
@@ -40,5 +41,14 @@
         <div class="bar-home-icon bottom"></div>
       </div>
     </div>
+    {% else %}
+    <a class="w-inline-block navbar-button" href="{{ returning_addr }}" data-load="1">
+      <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+    </a>
+  
+    {% endif %}
+
+    <div class="wrapper-mask" data-ix="menu-mask"></div>
+    
   </div>
 </div>

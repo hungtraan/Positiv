@@ -1,46 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Reflection</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/framework.css">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico">
-  <link rel="apple-touch-icon" href="images/logo.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+{% extends 'base.html' %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-  <section class="w-section mobile-wrapper">
-    <div class="page-content bg-gradient" id="main-stack" data-scroll="0">
-      <div class="w-nav navbar transparent" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
-        <div class="w-container">
-          <div class="wrapper-mask" data-ix="menu-mask"></div>
-          <!-- <div class="navbar-title">Sign Up</div> -->
-          <a class="w-inline-block navbar-button" href="login.html" data-load="1">
-            <div class="navbar-button-icon icon ion-ios-close-empty"></div>
-          </a>
-        </div>
-      </div>
+{% block body-content %}
       <div class="body padding">
         <!-- <div class="logo-login smaller"></div> -->
         
-        <div class="padding quote with-mark">
-          <p class="description-new indent-6">In the middle of every difficulty lies opportunity.
-          <br>
-          <span class="quote-author">- Albert Einstein</span></p>
+        <div class="padding quote">
+          <p class="description-new">I'm sorry your day did not go so well. Don't let your frustration aggregate. Break them down and we'll tackle them one by one!
+          <!-- <br> -->
+          <!-- <span class="quote-author">- Albert Einstein</span> -->
+          </p>
         </div>
         <div class="padding vertical-center">
           <div class="w-form">
             <form id="submit-form" name="email-form" action="#">
               <div>
-                <h2 class="title-new light">What did not go so well today?</h2>
-                <textarea class="w-input input-form light" id="high-point" type="text" name="high-point" data-name="high-point" required="required" rows="1"> </textarea> 
-                <i class="fa fa-microphone input-mic" aria-hidden="true"></i>
+                <h2 class="title-new light">Let's try thinking about what caused each of these frustrations?</h2>
+                <div class="reasons">
+                  <a class="bubble-block active" href="#">ACADEMIC</a>
+                  <a class="bubble-block" href="#">WORK</a>
+                  <a class="bubble-block active" href="#">RELATIONSHIP</a>
+                  <a class="bubble-block" href="#">FAMILY</a>
+                </div>
+                <div class="separator-button-input"></div>
+                <span class="light">Other</span>
+                <input class="w-input input-form light" id="high-point" type="text" name="high-point" data-name="high-point" required="required" rows="1"> 
+                
               </div>
               <div class="separator-button-input"></div>
               <input class="w-button action-button" type="submit" value="Next" data-wait="Please wait...">
@@ -50,25 +34,5 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="page-content loading-mask" id="new-stack">
-      <div class="loading-icon">
-        <div class="navbar-button-icon icon ion-load-d"></div>
-      </div>
-    </div>
-  </section>
-  <script src="js/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {
-        families: ["Montserrat:400,700"]
-      }
-    });
-  </script>
-  <script type="text/javascript" src="js/modernizr.js"></script>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/framework.js"></script>
-  <script type="text/javascript" src="js/scripts.js"></script>
-  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
-</body>
-</html>
+{% include "progress-bar.html" with perc=60 %}
+{% endblock %}
