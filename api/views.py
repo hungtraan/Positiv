@@ -12,11 +12,23 @@ def index(request):
 	
 @csrf_exempt
 def test_conn(request):
-	data = {'date':'11-19-2016', 'score':'80', 'faceID':'4'}
+	data = {'date':'11-19-2016', 'score':'85', 'faceID':'4'}
 	url = 'http://localhost:8000/api/setRating'
 	content = json.dumps(data)
 
 	r = requests.post(url, data=content)
+
+@csrf_exempt
+def test_get(request):
+	data = {'date':'11-19-2016'}
+
+	url = 'http://localhost:8000/api/getEntry'
+	content = json.dumps(data)
+
+	r = requests.post(url, data=content)
+	#jsonData = json.loads(r.content)
+
+	return HttpResponse(str(r.content))
 
 @csrf_exempt
 def setRating(request):
@@ -32,8 +44,8 @@ def setRating(request):
 
 	try:
 		requestEntry = DayEntry.objects.get(date__year=year,
-											date_month=month,
-											date_day=day)
+											date__month=month,
+											date__day=day)
 		requestEntry.score = int(jsonData['score'])
 		requestEntry.faceID = int(jsonData['faceID'])
 		requestEntry.save()
@@ -44,7 +56,7 @@ def setRating(request):
 		newEntry = DayEntry(date=requestDate, score=requestScore, faceID=requestFace)
 		newEntry.save()
 
-
+@csrf_exempt
 def getEntry(request):
 	response = {}
 	rawJSON = request.body.decode()
@@ -56,16 +68,15 @@ def getEntry(request):
 	day = date.day
 
 	try:
-		requestEntry = DayEntry.objects.get(date__year=year,
-											date_month=month,
-											date_day=day)
+		entry = DayEntry.objects.get(date__year=year,
+											date__month=month,
+											date__day=day)
 		response['date'] = str(entry.date)
 		response['score'] = str(entry.score)
 		response['faceID'] = str(entry.faceID)
 		response['exercises'] = []
 		response['highlights'] = []
 		response['lowlights'] = []
-		count = 0
 			
 		for exercise in entry.exercise_set.all():
 			ex = {}
@@ -85,8 +96,9 @@ def getEntry(request):
 
 			response['exercises'].append(ex)
 	except Exception:
+		print("lololala")
 		pass
 
 	jsonResponse = json.dumps(response)
 
-	return jsonResponse
+	return HttpResponse(jsonResponse, content_type='application/json')
