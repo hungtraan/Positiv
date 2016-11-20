@@ -198,7 +198,8 @@ def doExercise(request):
 	requestEntry.save()
 
 @csrf_exempt
-
+def adf(request):
+	pass
 
 
 

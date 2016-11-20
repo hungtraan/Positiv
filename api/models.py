@@ -27,6 +27,9 @@ class Exercise(models.Model):
 	dayEntry = models.ForeignKey(DayEntry, on_delete=models.CASCADE)
 	time = models.DateTimeField(auto_now=True)
 
+	def __str__(self):
+		return self.exerciseType + " - " + self.dayEntry
+
 class Keyword(models.Model):
 	word = models.CharField(max_length=100)
 	exercise = models.ManyToManyField(ExerciseType, blank=True)
