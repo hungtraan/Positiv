@@ -1,6 +1,4 @@
-{% extends 'base.html' %}
 
-{% block body-content %}
       <div class="body padding">
         <!-- <div class="logo-login smaller"></div> -->
         
@@ -12,18 +10,18 @@
         </div>
         <div class="padding vertical-center">
           <div class="w-form">
-            <form id="submit-form" name="email-form" action="#">
+            <form id="reflection-form" name="email-form" action="#" data-inject="/reflection4" data-step="causes">
               <div>
                 <h2 class="title-new light">Let's try thinking about what caused each of these frustrations?</h2>
                 <div class="reasons">
-                  <a class="bubble-block active" href="#">ACADEMIC</a>
-                  <a class="bubble-block" href="#">WORK</a>
-                  <a class="bubble-block active" href="#">RELATIONSHIP</a>
-                  <a class="bubble-block" href="#">FAMILY</a>
+                  <a class="bubble-block">ACADEMIC</a>
+                  <a class="bubble-block">WORK</a>
+                  <a class="bubble-block">RELATIONSHIP</a>
+                  <a class="bubble-block">FAMILY</a>
                 </div>
                 <div class="separator-button-input"></div>
                 <span class="light">Other</span>
-                <input class="w-input input-form light" id="high-point" type="text" name="high-point" data-name="high-point" required="required" rows="1"> 
+                <input class="w-input input-form light" id="other" type="text" name="other" data-name="cause" rows="1"> 
                 
               </div>
               <div class="separator-button-input"></div>
@@ -34,5 +32,3 @@
           </div>
         </div>
       </div>
-{% include "progress-bar.html" with perc=60 %}
-{% endblock %}

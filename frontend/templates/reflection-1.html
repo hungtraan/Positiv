@@ -1,13 +1,15 @@
+{% extends 'base.html' %}
 
+{% block body-content %}
 <div class="body padding">
   <!-- <div class="logo-login smaller"></div> -->
   <div class="padding vertical-center">
     <div class="w-form">
-      <form id="submit-form" name="email-form" action="#">
+      <form id="reflection-form" name="email-form" action="#" data-inject="/reflection2" data-step="high-point">
         <div>
           <h2 class="title-new light">Let's spend a moment and think about high points of your day?</h2>
           <textarea class="w-input input-form light" id="high-point" type="text" name="high-point" data-name="high-point" required="required" rows="1"> </textarea> 
-          <i class="fa fa-microphone input-mic" aria-hidden="true"></i>
+          <i class="icon ion-ios-mic input-mic" aria-hidden="true"></i>
         </div>
         <div class="separator-button-input"></div>
         <input class="w-button action-button" type="submit" value="Next" data-wait="Please wait...">
@@ -18,3 +20,4 @@
 </div>
 
 {% include "progress-bar.html" with perc=20 %}
+{% endblock %}

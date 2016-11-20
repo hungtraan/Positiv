@@ -20,17 +20,17 @@
 </head>
 <body>
   <section class="w-section mobile-wrapper">
-    <div class="page-content bg-gradient" id="main-stack" data-scroll="0">
-        
-        {% block asidemenu %}
+  {% block asidemenu %}
           {% include 'asidemenu.html' with exit=exit_button returning_addr=returning_addr %}
         {% endblock %}
+    <div class="page-content bg-gradient" id="main-stack" data-scroll="0">
+        
+        
           <!-- Aside nav -->        
           
           <!-- <div class="navbar-title">Home</div> -->
           
-        </div>
-      </div>
+      <!-- </div> -->
 
       {% block body-content %}
       {% endblock %}
@@ -53,7 +53,8 @@
   {% block js %}
 
   <script type="text/javascript" src="{% static 'js/modernizr.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/jquery.min' %}.js"></script>
+  <!-- <script type="text/javascript" src="{% static 'js/jquery.min' %}.js"></script> -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script type="text/javascript" src="{% static 'js/framework.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
   <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->

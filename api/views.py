@@ -16,6 +16,7 @@ def setRating(request):
 	jsonData = json.loads(rawJSON)
 
 	date = datetime.datetime.strptime(jsonData['date'], dateFormat)
+	
 	year = date.year
 	day = date.day
 	month = date.month
@@ -35,6 +36,8 @@ def setRating(request):
 		requestFace = int(jsonData['faceID'])
 		newEntry = DayEntry(date=requestDate, score=requestScore, faceID=requestFace)
 		newEntry.save()
+
+	return HttpResponse('')
 
 @csrf_exempt
 def getEntry(request):

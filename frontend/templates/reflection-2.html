@@ -1,6 +1,3 @@
-{% extends 'base.html' %}
-
-{% block body-content %}
 <div class="body padding">
   <!-- <div class="logo-login smaller"></div> -->
   
@@ -10,11 +7,11 @@
     <span class="quote-author">- Albert Einstein</span></p>
   </div>
   <div class="padding vertical-center">
-    <div class="w-form">
-      <form id="submit-form" name="email-form" action="#">
+    <div class="">
+      <form id="reflection-form" name="email-form" action="#" data-inject="/reflection3" data-step="low-point">
         <div>
           <h2 class="title-new light">What did not go so well today?</h2>
-          <textarea class="w-input input-form light" id="high-point" type="text" name="high-point" data-name="high-point" required="required" rows="1"> </textarea> 
+          <textarea class="w-input input-form light" type="text" name="low-point" required="required" rows="1"> </textarea> 
           <i class="icon ion-ios-mic input-mic" aria-hidden="true"></i>
         </div>
         <div class="separator-button-input"></div>
@@ -25,7 +22,3 @@
     </div>
   </div>
 </div>
-
-{% include "progress-bar.html" with perc=40 %}
-
-{% endblock %}

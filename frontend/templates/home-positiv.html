@@ -9,19 +9,13 @@
 {% block body-content %}
       <div class="body padding">
         <div class="padding vertical-center">
-          <div class="w-form">
-            <form id="submit-form" name="email-form" action="#">
-              <div>
-                <h2 class="title-new light">Hello {{ name }}, how was your day? :)</h2>
-                <div class="separator-fields"></div>
-                <button class="button light round">1</button>
-                <button class="button light round">2</button>
-                <button class="button light round">3</button>
-                <button class="button light round">4</button>
-                <button class="button light round">5</button>
-              </div>
-            </form>  
-          </div>
+          <h2 class="title-new light">Hello {{ name }}, how was your day? :)</h2>
+          <div class="separator-fields"></div>
+          <button class="button light round mood-btn" data-face-id="1">1</button>
+          <button class="button light round mood-btn" data-face-id="2">2</button>
+          <button class="button light round mood-btn" data-face-id="3">3</button>
+          <button class="button light round mood-btn" data-face-id="4">4</button>
+          <button class="button light round mood-btn" data-face-id="5">5</button>
         </div>
       </div>
 
