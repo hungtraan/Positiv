@@ -10,14 +10,15 @@
         {%for post in posts%}
           <li class="list-item-new post" >
                 <h2 class="title-new">{{post.date}}</h2>
+                <p class="description-new dummy">Access all news easily and instantaneously by taking taking</p>
 
                 <!-- <img class = "description-new face" src={{post.image}} style="width:200px;"> -->
-                <p class ="description-new face">Face: {{post.faceID}}</p>
-                <p class ="description-new score">Score: {{post.score}}</p>
-                <p class = "description-new hightlight"> Highlights: {{ post.exercise }} </p>
-                <p class = "description-new problem"> Problem: {{ post.exercise }}</p>
-                <p class = "description-new causes"> Problem: {{ post.exercise }}</p>
-                <a class="category-link keyword" href="#">Relationship</a>
+                <p class ="description-new dark face">Face: {{post.faceID}}</p>
+                <p class ="description-new dark score">Score: {{post.score}}</p>
+                <p class = "description-new dark hightlight"> Highlights: {{ post.exercise }} </p>
+                <p class = "description-new dark problem"> Problem: {{ post.exercise }}</p>
+                <a class="category-link keyword" href="#">RELATIONSHIP</a>
+                <a class="category-link keyword" href="#">WORK</a>
                 {%for keyword in keywords%}
                 <a class="category-link keyword" href="#">{{post.keywords.keyword}}</a>
                 {%endfor%}

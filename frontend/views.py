@@ -18,14 +18,14 @@ def diary(request):
 	# p = getExercises(request)
 	# print(p)
 	data = {'date':'2016-11-19'}
-	base_url = 'http://localhost:8000/api/'
+	base_url = 'https://5c388ee9.ngrok.io/api/'
 	
 	url = base_url + 'getEntry'
 	content = json.dumps(data)
 	
 	r = requests.post(url, data=content)
 
-	p = str(r.content)
+	p = r.content.decode()
 	# print(p)
 	post = json.loads(p)
 	posts = [post]

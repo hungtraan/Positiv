@@ -113,7 +113,7 @@ box-shadow:         4px 4px 3px 0px rgba(50, 50, 50, 0.2);
 .mobile-wrapper {
   position: relative;
   width: 342px;
-  height: 667px;
+  height: 570px;
   margin-right: auto;
   margin-left: auto;
   background-color: white;
@@ -1929,4 +1929,13 @@ input:checked + .slider:before {
   color: #fff;
   height: 0;
   overflow: hidden;
+}
+
+.post {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.dark {
+  color: #111;
 }
