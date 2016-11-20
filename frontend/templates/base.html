@@ -21,9 +21,12 @@
 <body>
   <section class="w-section mobile-wrapper">
     <div class="page-content bg-gradient" id="main-stack" data-scroll="0">
-      
-          <!-- Aside nav -->          
-          {% include 'asidemenu.html' %}
+        
+        {% block asidemenu %}
+          {% include 'asidemenu.html' with exit=exit_button returning_addr=returning_addr %}
+        {% endblock %}
+          <!-- Aside nav -->        
+          
           <!-- <div class="navbar-title">Home</div> -->
           
         </div>
