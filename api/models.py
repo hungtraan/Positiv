@@ -16,46 +16,53 @@ class DayEntry(models.Model):
 	def getDate(self):
 		return self.date.strftime('%m-%d-%Y')
 
-class Exercise(models.Model):
+class ExerciseType(models.Model):
 	exerciseType = models.CharField(max_length=100)
-	dayEntry = models.ManyToManyField(DayEntry, blank=True)
 
 	def __str__(self):
 		return self.exerciseType
 
+class Exercise(models.Model):
+	exerciseType = models.ForeignKey(ExerciseType, on_delete=models.CASCADE, null=True)
+	dayEntry = models.ForeignKey(DayEntry, on_delete=models.CASCADE)
+	time = models.DateTimeField(auto_now=True)
+
 class Keyword(models.Model):
 	word = models.CharField(max_length=100)
-	exercise = models.ManyToManyField(Exercise, blank=True)
+	exercise = models.ManyToManyField(ExerciseType, blank=True)
 
 	def __str__(self):
 		return self.word
 
 class Highlight(models.Model):
 	key = models.CharField(max_length=100)
-	exercise = models.ManyToManyField(Exercise, blank=True)
+	exercise = models.ManyToManyField(ExerciseType, blank=True)
 
 	def __str__(self):
 		return self.key
 
 class Lowlight(models.Model):
 	key = models.CharField(max_length=100)
-	exercise = models.ManyToManyField(Exercise, blank=True)
+	exercise = models.ManyToManyField(ExerciseType, blank=True)
 
 	def __str__(self):
 		return self.key
 
 class Question(models.Model):
+	question_id = models.IntegerField(default=-1)
 	prompt = models.CharField(max_length=1000)
-	exercise = models.ManyToManyField(Exercise, blank=True)
+	needResponse = models.BooleanField(default=False)
+	exercise = models.ForeignKey(ExerciseType, on_delete=models.CASCADE, null=True)
 
 	def __str__(self):
-		return self.prompt
+		return str(self.question_id) + ". " + self.prompt
 
 class QuestionAnswer(models.Model):
 	response = models.TextField()
-	needResponse = models.BooleanField(default=False)
-	exercise = models.ManyToManyField(Exercise, blank=True)
+	exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
+	time = models.DateTimeField(auto_now=True)
 	
 	def __str__(self):
-		return self.question.prompt
+		return self.question.prompt + " - " + self.response
+
