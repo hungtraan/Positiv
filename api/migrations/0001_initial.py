@@ -13,9 +13,53 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DayEntry',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
-                ('rating', models.IntegerField(default=-1)),
-                ('face', models.IntegerField(default=-1)),
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('date', models.DateTimeField()),
+                ('score', models.IntegerField(default=-1)),
+                ('faceID', models.IntegerField(default=-1)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Exercise',
+            fields=[
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('time', models.DateTimeField()),
+                ('exerciseType', models.CharField(max_length=100)),
+                ('dayEntry', models.ManyToManyField(to='api.DayEntry')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Highlight',
+            fields=[
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('key', models.CharField(max_length=100)),
+                ('exercise', models.ManyToManyField(to='api.Exercise')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Keyword',
+            fields=[
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('word', models.CharField(max_length=100)),
+                ('exercise', models.ManyToManyField(to='api.Exercise')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Lowlight',
+            fields=[
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('key', models.CharField(max_length=100)),
+                ('exercise', models.ManyToManyField(to='api.Exercise')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Question',
+            fields=[
+                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('prompt', models.CharField(max_length=1000)),
+                ('response', models.TextField()),
+                ('needResponse', models.BooleanField(default=False)),
+                ('exercise', models.ManyToManyField(to='api.Exercise')),
             ],
         ),
     ]
