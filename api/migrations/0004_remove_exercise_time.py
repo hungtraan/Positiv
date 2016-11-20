@@ -7,13 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0004_auto_20161120_0048'),
+        ('api', '0003_auto_20161119_2337'),
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='dayentry',
-            name='date',
-            field=models.DateTimeField(),
+        migrations.RemoveField(
+            model_name='exercise',
+            name='time',
         ),
     ]

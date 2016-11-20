@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0002_auto_20161119_2307'),
+        ('api', '0007_auto_20161120_0044'),
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='dayentry',
-            name='date',
-            field=models.DateTimeField(auto_now=True),
+        migrations.AddField(
+            model_name='question',
+            name='exercise',
+            field=models.ManyToManyField(blank=True, to='api.Exercise'),
         ),
     ]

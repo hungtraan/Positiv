@@ -1,7 +1,6 @@
 import json
 import datetime
 import requests
-from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -10,13 +9,6 @@ from .models import DayEntry, Exercise, Keyword, Highlight, Lowlight, Question
 def index(request):
 	return JsonResponse({'greeting':'Hello!'})
 	
-@csrf_exempt
-def test_conn(request):
-	data = {'date':'11-19-2016', 'score':'80', 'faceID':'4'}
-	url = 'http://localhost:8000/api/setRating'
-	content = json.dumps(data)
-
-	r = requests.post(url, data=content)
 
 @csrf_exempt
 def setRating(request):
@@ -32,8 +24,8 @@ def setRating(request):
 
 	try:
 		requestEntry = DayEntry.objects.get(date__year=year,
-											date_month=month,
-											date_day=day)
+											date__month=month,
+											date__day=day)
 		requestEntry.score = int(jsonData['score'])
 		requestEntry.faceID = int(jsonData['faceID'])
 		requestEntry.save()
@@ -44,7 +36,7 @@ def setRating(request):
 		newEntry = DayEntry(date=requestDate, score=requestScore, faceID=requestFace)
 		newEntry.save()
 
-
+@csrf_exempt
 def getEntry(request):
 	response = {}
 	rawJSON = request.body.decode()
@@ -56,16 +48,15 @@ def getEntry(request):
 	day = date.day
 
 	try:
-		requestEntry = DayEntry.objects.get(date__year=year,
-											date_month=month,
-											date_day=day)
+		entry = DayEntry.objects.get(date__year=year,
+											date__month=month,
+											date__day=day)
 		response['date'] = str(entry.date)
 		response['score'] = str(entry.score)
 		response['faceID'] = str(entry.faceID)
 		response['exercises'] = []
 		response['highlights'] = []
 		response['lowlights'] = []
-		count = 0
 			
 		for exercise in entry.exercise_set.all():
 			ex = {}
@@ -85,8 +76,46 @@ def getEntry(request):
 
 			response['exercises'].append(ex)
 	except Exception:
+		print("lola")
 		pass
 
 	jsonResponse = json.dumps(response)
 
-	return jsonResponse
+	return HttpResponse(jsonResponse, content_type='application/json')
+
+@csrf_exempt
+def graph_7days(request):
+	response = {}
+	response['data'] = []
+	today = datetime.datetime.today()
+
+	for daysAgo in range(7):
+		dayBefore = today - datetime.timedelta(days=daysAgo)
+		print(str(dayBefore))
+		dayDataDict = {}
+		dayDataDict['date'] = str(dayBefore.year) + "/" + str(dayBefore.month)\
+							  + "/" + str(dayBefore.day)
+		try:
+			dayData = DayEntry.objects.get(date__year=dayBefore.year,
+										   date__month=dayBefore.month,
+										   date__day=dayBefore.day)
+			score = dayData.score
+			faceID = dayData.faceID
+		except Exception:
+			score = 0
+			faceID = 0
+		
+		dayDataDict['score'] = score
+		dayDataDict['faceID'] = faceID
+		response['data'].append(dayDataDict)
+
+	jsonResponse = json.dumps(response)
+
+	return HttpResponse(jsonResponse, content_type='application/json')
+
+#@csrf_exempt
+
+
+
+
+
