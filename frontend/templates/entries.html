@@ -31,15 +31,17 @@
       <div class="news-mask"></div>
       <div class="news-container">
         <ul class="w-clearfix list-news">
-          <li class="list-item-new">
+        {%for post in posts}
+          <li class="list-item-new post" >
             
-                <h2 class="title-new">DATE</h2>
+                <h2 class="title-new">{{post.date}}</h2>
                 <p class="description-new">
-                <img class = "face" src="http://cliparting.com/wp-content/uploads/2016/06/Happy-face-smiley-face-happy-smiling-face-clip-art-at-vector-clip-4.jpg" style="width:200px;height:200px;">
-                <p class ="score">Score: 10</p>
-                <p class = "hightlight"> Highlights:  </p> 
-                <p class = "problem"> Problem: </p>
-                <a class="category-link" href="#">KEYWORD1</a><a class="category-link" href="#">KEYWORD2</a>
+                <img class = "face" src={{post.image}} style="width:200px;height:200px;">
+                <p class ="score">Score: {{post.score}}</p>
+                <p class = "hightlight"> Highlights: {{post.highlight}} </p> 
+                <p class = "problem"> Problem: {{post.problem}}</p>
+                {%for keyword in keywords}
+                <a class="category-link keyword" href="#">{{post.keywords.keyword}}</a>
               </div>
             </a>
           </li>
