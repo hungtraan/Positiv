@@ -28,7 +28,8 @@ class Exercise(models.Model):
 	time = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
-		return self.exerciseType + " - " + self.dayEntry
+		return self.exerciseType.exerciseType + " - " \
+			+ self.dayEntry.date.strftime('%m-%d-%Y')
 
 class Keyword(models.Model):
 	word = models.CharField(max_length=100)

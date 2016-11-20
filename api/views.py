@@ -57,10 +57,10 @@ def getEntry(request):
 		response['exercises'] = []
 		response['highlights'] = []
 		response['lowlights'] = []
-			
+		
 		for exercise in entry.exercise_set.all():
 			ex = {}
-			ex['type'] = exercise.exerciseType
+			ex['type'] = exercise.exerciseType.exerciseType
 			ex['questions'] = []
 			for qa in exercise.questionanswer_set.all():
 				q = {}
@@ -69,14 +69,13 @@ def getEntry(request):
 				q['response'] = qa.response
 				ex['questions'].append(q)
 
-			for highlight in exercise.highlight_set.all():
-				response['highlights'].append(highlight.key)
-			for lowlight in exercise.lowlight_set.all():
-				response['lowlights'].append(lowlight.key)
+			#for highlight in exercise.highlight_set.all():
+			#	response['highlights'].append(highlight.key)
+			#for lowlight in exercise.lowlight_set.all():
+			#	response['lowlights'].append(lowlight.key)
 
 			response['exercises'].append(ex)
 	except Exception:
-		print("lola")
 		pass
 
 	jsonResponse = json.dumps(response)
