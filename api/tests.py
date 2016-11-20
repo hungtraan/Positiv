@@ -56,8 +56,8 @@ def test_getQuestions(request):
 @csrf_exempt
 def test_doExercise(request):
 	data = {'date':'2016-11-19', 'exerciseType':'Reflection',
-			'answers': [{'1': 'Great!'}, {'2': 'Work, Academic'}, 
-						{'3': 'Money'}, {'4': 'Ngu'}]}
+			'answers': [{'1': 'Great!'}, {'2': 'Work, Academic. All are good, I\'m the best.'}, 
+						{'3': 'Money. I lost everything.'}, {'4': 'Since I\'m stupid'}]}
 	url = base_url + 'doExercise'
 	content = json.dumps(data)
 

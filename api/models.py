@@ -5,6 +5,8 @@ class DayEntry(models.Model):
 	date = models.DateTimeField(auto_now=False, auto_now_add=False)
 	score = models.IntegerField(default = -1)
 	faceID = models.IntegerField(default = -1)
+	sentiment = models.FloatField(default = 0)
+	emotion = models.FloatField(default = 0)
 
 	def __str__(self):
 		year = self.date.year
@@ -31,26 +33,31 @@ class Exercise(models.Model):
 		return self.exerciseType.exerciseType + " - " \
 			+ self.dayEntry.date.strftime('%m-%d-%Y')
 
-class Keyword(models.Model):
-	word = models.CharField(max_length=100)
-	exercise = models.ManyToManyField(ExerciseType, blank=True)
-
-	def __str__(self):
-		return self.word
-
 class Highlight(models.Model):
 	key = models.CharField(max_length=100)
-	exercise = models.ManyToManyField(ExerciseType, blank=True)
 
 	def __str__(self):
 		return self.key
+
+class HighlightAnswer(models.Model):
+	highlight = models.ForeignKey(Highlight, on_delete=models.CASCADE, null=True)
+	exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+
+	def __str__(self):
+		pass
 
 class Lowlight(models.Model):
 	key = models.CharField(max_length=100)
-	exercise = models.ManyToManyField(ExerciseType, blank=True)
 
 	def __str__(self):
 		return self.key
+
+class LowlightAnswer(models.Model):
+	loelight = models.ForeignKey(Lowlight, on_delete=models.CASCADE, null=True)
+	exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
+
+	def __str__(self):
+		pass
 
 class Question(models.Model):
 	question_id = models.IntegerField(default=-1)
