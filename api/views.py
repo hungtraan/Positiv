@@ -1,7 +1,6 @@
 import json
 import datetime
 import requests
-from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -10,25 +9,6 @@ from .models import DayEntry, Exercise, Keyword, Highlight, Lowlight, Question
 def index(request):
 	return JsonResponse({'greeting':'Hello!'})
 	
-@csrf_exempt
-def test_conn(request):
-	data = {'date':'11-19-2016', 'score':'85', 'faceID':'4'}
-	url = 'http://localhost:8000/api/setRating'
-	content = json.dumps(data)
-
-	r = requests.post(url, data=content)
-
-@csrf_exempt
-def test_get(request):
-	data = {'date':'11-19-2016'}
-
-	url = 'http://localhost:8000/api/getEntry'
-	content = json.dumps(data)
-
-	r = requests.post(url, data=content)
-	#jsonData = json.loads(r.content)
-
-	return HttpResponse(str(r.content))
 
 @csrf_exempt
 def setRating(request):
@@ -96,9 +76,46 @@ def getEntry(request):
 
 			response['exercises'].append(ex)
 	except Exception:
-		print("lololala")
+		print("lola")
 		pass
 
 	jsonResponse = json.dumps(response)
 
 	return HttpResponse(jsonResponse, content_type='application/json')
+
+@csrf_exempt
+def graph_7days(request):
+	response = {}
+	response['data'] = []
+	today = datetime.datetime.today()
+
+	for daysAgo in range(7):
+		dayBefore = today - datetime.timedelta(days=daysAgo)
+		print(str(dayBefore))
+		dayDataDict = {}
+		dayDataDict['date'] = str(dayBefore.year) + "/" + str(dayBefore.month)\
+							  + "/" + str(dayBefore.day)
+		try:
+			dayData = DayEntry.objects.get(date__year=dayBefore.year,
+										   date__month=dayBefore.month,
+										   date__day=dayBefore.day)
+			score = dayData.score
+			faceID = dayData.faceID
+		except Exception:
+			score = 0
+			faceID = 0
+		
+		dayDataDict['score'] = score
+		dayDataDict['faceID'] = faceID
+		response['data'].append(dayDataDict)
+
+	jsonResponse = json.dumps(response)
+
+	return HttpResponse(jsonResponse, content_type='application/json')
+
+#@csrf_exempt
+
+
+
+
+

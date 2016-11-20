@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'positive.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'positive',
-		'USER': 'hackohio',
-		'PASSWORD': 'denison2016',
-		'HOST': 'localhost',
+        'NAME': 'heroku_75cd88d79e02245',
+		'USER': 'bea59aa636cc48',
+		'PASSWORD': '05215d28',
+		'HOST': 'us-cdbr-iron-east-04.cleardb.net',
 		'PORT': '3306',
     }
 }
