@@ -433,6 +433,14 @@ box-shadow:         4px 4px 3px 0px rgba(50, 50, 50, 0.2);
     right: 28px;
 }
 
+.padding.vertical-30 {
+  // margin-top: 60%;
+    position: absolute;
+    top: 30%;
+    left: 28px;
+    right: 28px;
+}
+
 .padding.smaller {
   padding-right: 16px;
   padding-left: 16px;
@@ -468,7 +476,8 @@ box-shadow:         4px 4px 3px 0px rgba(50, 50, 50, 0.2);
   height: 49px;
   padding: 12px;
   border-radius: 1px;
-  background-color: #fd4c58;
+  // background-color: #fd4c58;
+  background-color: #54caff;
   color: white;
   font-size: 12px;
   line-height: 26px;
@@ -477,7 +486,8 @@ box-shadow:         4px 4px 3px 0px rgba(50, 50, 50, 0.2);
   text-decoration: none;
 }
 .action-button:active {
-  background-color: #df3e49;
+  background-color: #30bfff;
+  // background-color: #df3e49;
 }
 .action-button.grey {
   background-color: #102a3b;
@@ -1810,4 +1820,28 @@ input[type=text]:focus, textarea:focus {
   background-color: #4879fd;
   width: 100%;
   z-index: 1000;
+}
+
+.exercise-list {
+  padding-left: 0px;
+}
+
+.exercise-item {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  color: #5094b2;
+  border-radius: 3px;
+  font-weight: 400 !important;
+}
+
+.chevron-pull-right {
+  float: right;
+  margin-right: 10px;
+  padding-top: 3px;
+
 }
