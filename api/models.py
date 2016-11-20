@@ -6,17 +6,8 @@ class DayEntry(models.Model):
 	score = models.IntegerField(default = -1)
 	faceID = models.IntegerField(default = -1)
 
-	def getScore(self):
-		return self.score
-
-	def getFaceID(self):
-		return self.faceID
-
 	def getDate(self):
 		return self.date.strftime('%m-%d-%Y')
-
-	def getExercises(self):
-		return self.exercise_set.all()
 
 class Exercise(models.Model):
 	time = models.DateTimeField(auto_now=False, auto_now_add=False)
