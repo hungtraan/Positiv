@@ -35,17 +35,15 @@
           <li class="list-item-new post" >
             
                 <h2 class="title-new">{{post.date}}</h2>
-                <p class="description-new">
-                <img class = "face" src={{post.image}} style="width:200px;height:200px;">
-                <p class ="score">Score: {{post.score}}</p>
-                <p class = "hightlight"> Highlights: {{post.highlight}} </p> 
-                <p class = "problem"> Problem: {{post.problem}}</p>
+                <img class = "description-new face" src={{post.image}} style="width:200px;height:200px;">
+                <p class ="description-new score">Score: {{post.score}}</p>
+                <p class = "description-new hightlight"> Highlights: {{post.highlight}} </p> 
+                <p class = "description-new problem"> Problem: {{post.problem}}</p>
                 {%for keyword in keywords%}
                 <a class="category-link keyword" href="#">{{post.keywords.keyword}}</a>{%endfor%}
-              </div>
-            </a>
           </li>
           {%endfor%}
+          </ul>
      
     </div>
     <div class="page-content loading-mask" id="new-stack">
