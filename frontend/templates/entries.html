@@ -31,7 +31,7 @@
       <div class="news-mask"></div>
       <div class="news-container">
         <ul class="w-clearfix list-news">
-        {%for post in posts}
+        {%for post in posts%}
           <li class="list-item-new post" >
             
                 <h2 class="title-new">{{post.date}}</h2>
@@ -40,8 +40,8 @@
                 <p class ="score">Score: {{post.score}}</p>
                 <p class = "hightlight"> Highlights: {{post.highlight}} </p> 
                 <p class = "problem"> Problem: {{post.problem}}</p>
-                {%for keyword in keywords}
-                <a class="category-link keyword" href="#">{{post.keywords.keyword}}</a>{%endfor}
+                {%for keyword in keywords%}
+                <a class="category-link keyword" href="#">{{post.keywords.keyword}}</a>{%endfor%}
               </div>
             </a>
           </li>
