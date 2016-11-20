@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    {{ block.super }} {# includes previous content in block #}
+    {# view-specific imports here #}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block js %}
+    {{ block.super }} {# includes previous content in block #}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+    <script>
+    var ctx = document.getElementById("sevenDayChart");
+    var data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+            label: "Daily Positiv Score",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: "rgba(75,192,192,0.4)",
+            borderColor: "rgba(75,192,192,1)",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [65, 59, 80, 81, 56, 55, 40],
+            spanGaps: false,
+        }
+    ]};
+    var sevenDayChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+
+    // Mixed chart 
+    var weeksCtx = document.getElementById("weeksChart");
+    var weeksChart = new Chart(weeksCtx, {
+    type: 'bar',
+    data: {
+        labels: ['W1', 'W2', 'W3', 'W4'],
+        datasets: [
+            {
+                type: 'bar',
+                label: 'Days Reported',
+                data: [5, 7, 6, 4],
+                yAxisID: "y-axis-0",
+            },
+            {
+                type: 'line',
+                label: 'Avg. Positive Score',
+                data: [78, 80, 65, 50],
+                fill: false,
+                lineTension: 0.1,
+                yAxisID: "y-axis-1",
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)"
+            }
+        ]
+    },
+    options: {
+    scales: {
+      yAxes: [{
+        position: "left",
+        "id": "y-axis-0",
+        ticks: {
+            max: 7,
+            min: 0,
+            stepSize: 1
+        }
+      }, {
+        position: "right",
+        "id": "y-axis-1",
+        ticks: {
+            max: 100,
+            min: 20
+        }
+      }]
+    }
+  }
+});
+  </script>
+{% endblock %}
+
+{% block header-title %}
+    {{ block.super }} {# includes previous content in block #}
+    <div class="navbar-title">Graphs</div>
+{% endblock %}
+
+{% block body-content %}
+    <div class="body">
+        <div class="news-container" style="display: block;">
+        <ul class="list-news">
+          <li class="list-item-new">
+            
+              <div class="text-new">
+                <h2 class="title-new text-center">Last 7 days</h2>
+                <div class="graph">
+                  <canvas id="sevenDayChart" width="100%" height="70"></canvas>
+                </div>
+                <p class="description-new dummy">Access all news easily and instantaneously by taking taking</p>
+              </div>
+          </li>
+        </ul>
+        <ul class="list-news">
+          <li class="list-item-new">
+            
+              <div class="text-new">
+                <h2 class="title-new text-center">Last 4 weeks</h2>
+                <div class="graph">
+                  <canvas id="weeksChart" width="100%" height="70"></canvas>
+                </div>
+                <p class="description-new dummy">Access all news easily and instantaneously by taking taking </p>
+              </div>
+          </li>
+          
+        </ul>
+        </div>
+    </div>
+{% endblock %}
