@@ -1,9 +1,11 @@
 import json
-import datetime, operator
+import datetime, operator, argparse
 from django.http import JsonResponse, HttpResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from .models import DayEntry, ExerciseType, Keyword, Highlight, Lowlight, Question
+from googleapiclient import discovery
+from oauth2client.client import GoogleCredentials
+from .models import DayEntry, ExerciseType, Highlight, Lowlight, Question
 
 dateFormat = '%Y-%m-%d'
 
@@ -55,8 +57,10 @@ def getEntry(request):
 											date__month=month,
 											date__day=day)
 		response['date'] = str(entry.date)
-		response['score'] = str(entry.score)
-		response['faceID'] = str(entry.faceID)
+		response['score'] = entry.score
+		response['faceID'] = entry.faceID
+		response['emotion'] = entry.emotion
+		response['sentiment'] = entry.sentiment
 		response['exercises'] = []
 		response['highlights'] = []
 		response['lowlights'] = []
@@ -181,27 +185,42 @@ def doExercise(request):
 	questionSet = exerciseType.question_set.all()
 	answerList = jsonData['answers']
 	exercise = requestEntry.exercise_set.create(exerciseType=exerciseType)
+	resList = []
 
 	for answer in answerList:
 		q_id = list(answer.keys())[0]
+		resList.append(answer[q_id])
 		question = None
 		for q in questionSet:
 			if q.question_id == int(q_id):
-				print("found")
 				question = q
 				break
 		
 		if question != None:
-			print(answer[q_id]) 
 			exercise.questionanswer_set.create(question=question, response=answer[q_id])
 
-	print("done")
-	exercise.save()
+	credentials = GoogleCredentials.get_application_default()
+	service = discovery.build('language', 'v1', credentials=credentials)
+
+
+	service_request = service.documents().analyzeSentiment(
+		body = {
+			'document': {
+				'type': 'PLAIN_TEXT',
+				'content': '.'.join(resList),
+			}
+		}
+	)
+	response = service_request.execute()
+
+	sentiment = response['documentSentiment']['score']
+	emotion = response['documentSentiment']['magnitude']
+	requestEntry.sentiment = sentiment
+	requestEntry.emotion = emotion
 	requestEntry.save()
 
-@csrf_exempt
-def adf(request):
-	pass
+	return HttpResponse("done!")
+
 
 
 
