@@ -1632,7 +1632,7 @@ input[type=text]:focus, textarea:focus {
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
+  width: 45px;
   height: 20px;
 }
 
@@ -1641,6 +1641,7 @@ input[type=text]:focus, textarea:focus {
 
 /* The slider */
 .slider {
+ 
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -1655,10 +1656,10 @@ input[type=text]:focus, textarea:focus {
 .slider:before {
   position: absolute;
   content: "";
-  height: 15px;
-  width: 15px;
-  left: 3px;
-  bottom: 4px;
+  height: 17px;
+  width: 17px;
+  left: 1px;
+  bottom: 2px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -1680,7 +1681,7 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 20px;
 }
 
 .slider.round:before {
